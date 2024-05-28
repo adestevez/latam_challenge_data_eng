@@ -25,12 +25,6 @@ def create_gcp_clients():
                     Si las credenciales JSON no contienen la clave 'project_id'.
         Exception: Cualquier otro error que ocurra durante la creación de los clientes.
 
-    Ejemplo:
-        storage_client, bigquery_client = create_gcp_clients()
-        if storage_client and bigquery_client:
-            print("Clientes creados exitosamente")
-        else:
-            print("Error al crear clientes")
     """
     try:
         # Verificar si la variable de entorno 'gcp_service_account' está definida
