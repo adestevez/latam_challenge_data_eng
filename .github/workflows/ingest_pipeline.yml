@@ -1,0 +1,26 @@
+name: Run Ingestion Pipeline Script
+
+on:
+  workflow_dispatch:
+
+env:
+  gcp_service_account: ${{secrets.LATAM_GCP_SERVICE_ACCOUNT}}
+
+jobs:
+  run_python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run Ingestion Script
+        run: python ./src/create_medallion_pipeline.py
