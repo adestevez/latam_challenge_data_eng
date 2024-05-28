@@ -1,0 +1,30 @@
+name: Run Data Aggregations Pipeline
+
+on:
+  workflow_dispatch:
+env:
+      gcp_service_account: ${{secrets.LATAM_GCP_SERVICE_ACCOUNT}}
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Spark
+      run: |
+          chmod +x ./install_spark.sh  # Asegurarse de que el script es ejecutable
+          ./install_spark.sh
+    
+    - name: Install dependencies
+      run: |
+          pip install -r requirements.txt
+
+    - name: Run Data Aggregations Script
+      run: python ./src/challenge.py
