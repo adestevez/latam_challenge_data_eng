@@ -43,11 +43,8 @@ def create_gcp_clients():
                 gcp_service_account = os.environ.get('gcp_service_account')
             return gcp_service_account
 
-        # Ejemplo de uso
         gcp_service_account = obtener_gcp_service_account()
 
-        # Verificar si la variable de entorno 'gcp_service_account' está definida
-        gcp_service_account = os.environ.get('gcp_service_account')
         if not gcp_service_account:
             raise ValueError("La variable de entorno 'gcp_service_account' no está definida o está vacía.")
 
