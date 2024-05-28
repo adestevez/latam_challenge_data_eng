@@ -3,7 +3,6 @@ Este módulo contiene la función q3_memory para realizar consultas de memoria e
 """
 import time
 from typing import List, Tuple
-from google.cloud import bigquery
 from gcp_client import create_gcp_clients
 from memory_profiler import profile
 
@@ -62,9 +61,6 @@ def q3_memory(file_path: str) -> List[Tuple[str, int]]:
         execution_time = end_time - start_time
         print("Execution Time: ", execution_time)
         return [(row.username, row.count) for row in results]
-    except bigquery.BigQueryError as e:
-        print(f"Error de BigQuery: {e}")
-        return []
     except Exception as e:
         print(f"Error inesperado: {e}")
         return []

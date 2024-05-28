@@ -1,9 +1,8 @@
 """
-Este módulo contiene la función q3_time para realizar análisis de tiempo en un archivo Parquet.
+Este módulo contiene la función q3_time para realizar análisis de tiempo en una consulta en Bigquery.
 """
 import time
 from typing import List, Tuple
-from google.cloud import bigquery
 from gcp_client import create_gcp_clients
 from memory_profiler import profile
 
@@ -13,7 +12,7 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
     Realiza análisis de tiempo en un archivo Parquet para obtener las menciones más comunes.
 
     Parameters:
-        file_path (str): La ruta del archivo Parquet a analizar.
+        file_path (str): tabla donde se hara la consulta.
 
     Returns:
         List[Tuple[str, int]]: Una lista de tuplas que contiene las menciones más comunes
@@ -55,9 +54,6 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
         execution_time = end_time - start_time
         print("Execution Time: ", execution_time)
         return [(row.username, row.count) for row in results]
-    except bigquery.BigQueryError as e:
-        print(f"Error de BigQuery: {e}")
-        return []
     except Exception as e:
         print(f"Error inesperado: {e}")
         return []
