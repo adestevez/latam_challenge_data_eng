@@ -1,7 +1,8 @@
 """
-Cliente de GCP para usar en Sotrage y Bigquery
+Cliente de GCP para
 """
 import os
+import sys
 import json
 from google.cloud import storage, bigquery
 from google.oauth2 import service_account
@@ -25,8 +26,26 @@ def create_gcp_clients():
                     Si las credenciales JSON no contienen la clave 'project_id'.
         Exception: Cualquier otro error que ocurra durante la creación de los clientes.
 
+    Ejemplo:
+        storage_client, bigquery_client = create_gcp_clients()
+        if storage_client and bigquery_client:
+            print("Clientes creados exitosamente")
+        else:
+            print("Error al crear clientes")
     """
     try:
+
+        def obtener_gcp_service_account():
+            if 'google.colab' in sys.modules:
+                from google.colab import userdata
+                gcp_service_account = userdata.get('gcp_service_account')
+            else:
+                gcp_service_account = os.environ.get('gcp_service_account')
+            return gcp_service_account
+
+        # Ejemplo de uso
+        gcp_service_account = obtener_gcp_service_account()
+
         # Verificar si la variable de entorno 'gcp_service_account' está definida
         gcp_service_account = os.environ.get('gcp_service_account')
         if not gcp_service_account:
