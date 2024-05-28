@@ -1,5 +1,5 @@
 """
-Este módulo contiene la función q3_time para realizar análisis de tiempo en un archivo Parquet.
+Este módulo contiene la función q3_time para realizar análisis de tiempo en una consulta en Bigquery.
 """
 import time
 from typing import List, Tuple

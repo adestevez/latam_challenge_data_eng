@@ -3,7 +3,6 @@ Este módulo contiene la función q2_time para realizar consultas de memoria en 
 """
 import time
 from typing import List, Tuple
-from google.cloud import bigquery
 from gcp_client import create_gcp_clients
 from memory_profiler import profile
 
@@ -61,9 +60,6 @@ def q2_time(file_path: str) -> List[Tuple[str, int]]:
         execution_time = end_time - start_time
         print("Execution Time: ", execution_time)
         return [(row.emoji, row.count) for row in results]
-    except bigquery.BigQueryError as e:
-        print(f"Error de BigQuery: {e}")
-        return []
     except Exception as e:
         print(f"Error inesperado: {e}")
         return []
