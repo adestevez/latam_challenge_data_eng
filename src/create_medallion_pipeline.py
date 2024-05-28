@@ -29,7 +29,7 @@ def read_json_from_gcs(bucket, file_name):
     Lee un archivo JSON desde Google Cloud Storage y lo decodifica.
     
     Args:
-        bucket (google.cloud.storage.bucket.Bucket): El bucket de Google Cloud Storage.
+        bucket: El bucket de Google Cloud Storage.
         file_name (str): El nombre del archivo JSON a leer.
 
     Returns:
