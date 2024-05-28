@@ -51,6 +51,17 @@ def main():
         results = q1_memory(TEMP_FILE_PATH)
         print(f"Memory Optimization - Results: {results}")
 
+        table_name = "mst_tweets.mst_farmers_tweets"
+        results = q2_time(table_name)
+        print(f"Memory Optimization - Results: {results}")
+        results = q2_memory(TEMP_FILE_PATH)
+        print(f"Time Optimization - Results: {results}")
+
+        results = q3_memory(table_name)
+        print(f"Time Optimization - Results: {results}")
+
+        results = q3_time(table_name)
+        print(f"Time Optimization - Results: {results}")
     except Exception as e:
         print(f"Error al ejecutar las operaciones: {str(e)}")
 
