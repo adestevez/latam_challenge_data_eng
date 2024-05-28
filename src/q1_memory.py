@@ -6,10 +6,9 @@ realizar análisis de memoria en un archivo Parquet.
 from typing import List, Tuple
 import datetime
 import time
-from collections import Counter
 from memory_profiler import profile
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, to_date, count
+from pyspark.sql import SparkSession,Window
+from pyspark.sql.functions import col, to_date, count,row_number
 
 @profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
