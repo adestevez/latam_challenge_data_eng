@@ -27,3 +27,9 @@ Los resultados obtenidos se han documentado en el Jupyter Notebook, donde se mue
 Se ha seguido una estructura clara y modular en el código, con buenas prácticas de GitFlow, manteniendo ramas de desarrollo separadas y una rama main para la versión final.
 
 
+![imagen.png](../img/gitflow.png)
+
+**SOLO LECTURA POR ACCESOS DE USUARIO**
+[Challenge en Producción alojado en Colab Lectura](https://colab.research.google.com/drive/10ie1QSzcOrIfG2zRUEcJLhp71X74NVQE)
+
+**IMPORTANTE: Los valores descritos en `challenge.ipynb` correspondientes a Github Actions se alinean a los ejecutas en la rama `Develop`. El lector mediante su respectivo inicio de sesión en sucuenta de Github podrá revisar los logs dados en ambientes de Develop y Main.**
