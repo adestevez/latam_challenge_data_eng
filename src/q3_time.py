@@ -26,23 +26,28 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
 
         # Query para contar nombres de usuario en tweets
         query = fr"""
-            SELECT 
-              username,
-              COUNT(*) AS count
-            FROM (
-              SELECT 
-                ARRAY_TO_STRING(REGEXP_EXTRACT_ALL(mentionedUsers, r"'username':\s*'([^']+)'"), ',') AS usernames
-              FROM 
+            -- Subconsulta para extraer los nombres de usuario y contarlos
+            WITH usernames_table AS (
+                SELECT 
+                    REGEXP_EXTRACT_ALL(mentionedUsers, r"'username':\s*'([^']+)'") AS usernames
+                FROM 
                     `{file_path}`
-              WHERE mentionedUsers != "None"
-            ) AS usernames_table
-            CROSS JOIN UNNEST(SPLIT(usernames, ',')) AS username
+            )
+
+            -- Consulta principal para contar los nombres de usuario y ordenarlos
+            SELECT 
+                username,
+                COUNT(*) AS count
+            FROM 
+            (
+                SELECT username FROM usernames_table, UNNEST(usernames) AS username
+            ) AS user_data
             GROUP BY 
-              username
+                username
             ORDER BY 
-              count DESC
+                count DESC
             LIMIT 
-              10;
+                10;
         """
 
         # Ejecutar la consulta
